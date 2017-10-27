@@ -1,7 +1,7 @@
 		var batch = ["@echo off", "title Corescript File"]
 		var builder = false; // Corescript's New Website Builder
 		var builder_compiled = ["<!-- Created Using Corescript's Website Builder -->", "<title>Corescript Website<\/title>"];
-		popup("<h3>What's new?<\/h3><ul><li>Made popups draggable.<\/li><li>Improved settings.<\/li><li>Bug Fixes.<\/li><\/ul>");
+		
 		// Declare Variables
 		var q_ = q + 1;
 		var aaaa = "// nothing";
