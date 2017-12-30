@@ -1,1 +1,1 @@
-Corescript Programming Language
+[discontinued] Corescript Programming Language
