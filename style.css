@@ -1,0 +1,39 @@
+body,html {
+	width: 100%;
+	height: 100%;
+	margin: 0;
+}
+#overlay {
+	padding: 2px 2px 0;
+	background-color: rgb(66,66,66);
+	height: 94.2%;
+	color: rgb(212,212,212);
+}
+#code {
+	height: 94%;
+	color: transparent;
+	caret-color: black;
+	background: transparent;
+}
+#code,#overlay {
+	width: 47%;
+	font-family: arial;
+	position: absolute;
+	outline: none;
+	top: 5%;
+	left: 0px;
+	font-size: 1em;
+	line-height: 1em;
+	resize: none;
+	border: 1px solid black;
+	float: left;
+}
+#result {
+	width: 47%;
+	height: 94%;
+	border: 1px solid black;
+	float: right;
+	position: absolute;
+	top: 5%;
+	right: 0px;
+}
