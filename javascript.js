@@ -1,7 +1,7 @@
 var variables = [];
 var labels = [];
 function exec() {
-	document.getElementById('result').innerHTML = "";
+	document.getElementById('player').innerHTML = "";
 	variables = ["line="+i+""];
 	var code = document.getElementById('code').value.split("\n");
 	for (var p = 0; p < code.length; p++) {
@@ -20,7 +20,7 @@ function exec() {
 			variables.push(var2 + "=" + var3);
 		} else if (code[i].startsWith("print ")) {
 			var print1 = code[i].substring(6);
-			document.getElementById('result').innerHTML += replaceVars(print1);
+			document.getElementById('player').innerHTML += replaceVars(print1);
 		} else if (code[i].startsWith("input ")) {
 			var input1 = code[i].substring(6);
 			input1 = input1.replace(" = ","=");
@@ -45,7 +45,7 @@ function exec() {
 			i++
 		} else if (code[i].startsWith("msg ")) {
 			var msg1 = code[i].substring(4);
-			alert(msg1);
+			alert(replaceVars(msg1));
 		} else if (code[i].startsWith("if ")) {
 			//name = fart:
 			var if1 = code[i].substring(3);
@@ -126,11 +126,12 @@ function replaceVars(string) {
 	for (var o = 0; o < variables.length; o++) {
 		var name = variables[o].split("=")[0];
 		var value = variables[o].split("=")[1];
+		var regex2 = /\(add ([a-zA-Z0-9_-]+),([a-zA-Z0-9_-]+)\)/g;
+		result = result.replace(regex2,""+getVar("$1")+",$2"); 
 		result = result.replace("("+name+")",value); 
 	}
 	return result
 }
-// Super dooper syntax highlighter!
 setInterval(function() {
 	var text = document.getElementById('code').value;
 	text = text.replace(/print/g,"<span style='color:orange;'>print</span>");
@@ -139,7 +140,17 @@ setInterval(function() {
 	text = text.replace(regex1,"<span style='color:rgb(150,150,150);'>//$1</span>");
 	text = text.toString().replace(/\n/g,"<br>");
 	document.getElementById("overlay").innerHTML = text;
+	count();
 },10);
+function count() {
+	document.getElementById("counter").innerHTML = "<div style='height:2px;'></div>";
+	var lines = document.getElementById("code").value.split("\n");
+	for (var o = 0; o < lines.length; o++) {
+		document.getElementById("counter").innerHTML += "<p>" + (o+1) + "</p>";
+	}
+	document.getElementById('overlay').scrollTop = document.getElementById('code').scrollTop;
+	document.getElementById('counter').scrollTop = document.getElementById('code').scrollTop;
+}
 function l(string) { // Just to make things easier.
 	console.log(string);
 }
